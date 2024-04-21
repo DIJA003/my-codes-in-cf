@@ -1,0 +1,17 @@
+import java.util.Scanner;
+public class main {
+	public static void main(String[] args){
+		Scanner input = new Scanner (System.in);
+		long a = input.nextLong();
+		long b = input.nextLong();
+		long ans= 1;
+		for (long i = a + 1; i <= b; i++){
+			long lastdigit = i % 10;
+			ans = (ans * lastdigit) % 10;
+			if(ans % 10 ==0){
+			break;
+				}
+			}
+		System.out.println(ans);
+	}
+}

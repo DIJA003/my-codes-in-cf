@@ -1,0 +1,44 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#define FLUSH cin.tie(0), cout.tie(0), cin.sync_with_stdio(0), cout.sync_with_stdio(0);
+#define nl '\n'
+#define all(x) (x).begin(),(x).end()
+#define loop(i, n) for(int i = 0; i < n; i++)
+typedef long long ll;
+
+ll nCr(int n, int r) {
+    if (r < 0 || r > n) return 0;
+    if (r == 0 || n == r) return 1;
+    if (r > n - r) r = n - r;
+    ll ans = 1;
+    for (int i = 1; i <= r; i++) {
+        ans *= (n - r + i);
+        ans /= i;
+    }
+    return ans;
+}
+
+void solve() {
+    int n, m, t;
+    cin >> n >> m >> t;
+    int mxboys = min(n, t - 1);
+    ll ans = 0;
+    for (int i = 4; i <= mxboys; i++) {
+        int g = t - i;
+        if (g >= 1 && g <= m) {
+            ans += nCr(n, i) * nCr(m, g);
+        }
+    }
+    cout << ans << nl;
+}
+
+
+int main() {
+    FLUSH;
+    // int tt;
+    // cin >> tt;
+    // while (tt--)
+    solve();
+    return 0;
+}

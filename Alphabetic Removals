@@ -1,0 +1,42 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#define FLUSH cin.tie(0), cout.tie(0), cin.sync_with_stdio(0), cout.sync_with_stdio(0);
+#define nl '\n'
+#define all(x) (x).begin(),(x).end()
+#define loop(i,n) for(int i = 0; i < n; i++)
+typedef long long ll;
+
+
+void solve() {
+    int n,k;
+    cin>>n>>k;
+    string s;
+    cin>>s;
+    vector<int> freq(26, 0);
+    loop(i,n) freq[s[i] - 'a']++;
+    vector<int> v(26,0);
+    loop(i,26) {
+        if(k <= 0) break;
+        int temp = min(freq[i],k);
+        v[i] = temp;
+        k -= temp;
+    }
+    vector<int> rem(26,0);
+    string ans;
+    loop(i,n) {
+        int c = s[i] - 'a';
+        if(rem[c] < v[c]) rem[c]++;
+        else ans+=s[i];
+    }
+    cout<<ans<<nl;;
+}
+
+int main() {
+    FLUSH;
+    // int tt;
+    // cin >> tt;
+    // while (tt--)
+    solve();
+    return 0;
+}
